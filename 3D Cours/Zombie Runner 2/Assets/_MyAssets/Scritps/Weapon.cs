@@ -22,15 +22,20 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
         {
-            Debug.Log("I hit this thing: " + hit.transform.name);
-            // TODO: add some hit effect for visual players
-            EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-            if (target == null) return;
-            target.TakeDamage(damage);
+            ProcessHit(hit);
         }
         else
         {
             return;
         }
+    }
+
+    void ProcessHit(RaycastHit hit)
+    {
+        Debug.Log("I hit this thing: " + hit.transform.name);
+        // TODO: add some hit effect for visual players
+        EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
+        if (target == null) return;
+        target.TakeDamage(damage);
     }
 }
