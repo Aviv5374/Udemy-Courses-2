@@ -9,6 +9,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float chaseRange = 5.75f;
 
     NavMeshAgent myNavMeshAgent;
+    Animator myAnimator;
+    List<AnimatorControllerParameter> myAnimtorParameters = new List<AnimatorControllerParameter>();     
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
 
@@ -16,6 +18,16 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         myNavMeshAgent = GetComponent<NavMeshAgent>();
+        SetAnimator();
+    }
+
+    void SetAnimator()
+    {
+        myAnimator = GetComponent<Animator>();
+        for (int index = 0; index < myAnimator.parameterCount; index++)
+        {
+            myAnimtorParameters.Add(myAnimator.GetParameter(index));
+        }        
     }
 
     // Update is called once per frame
@@ -54,11 +66,19 @@ public class EnemyAI : MonoBehaviour
 
     void ChaseTarget()
     {
+        SetAttackAnimation(false);
+        myAnimator.SetTrigger(myAnimtorParameters[1].name);//Move
         myNavMeshAgent.SetDestination(target.position);
     }
 
     void AttackTarget()
     {
-        Debug.Log(name + " has seeked and is destroying " + target.name);
+        SetAttackAnimation(true);
+        //Debug.Log(name + " has seeked and is destroying " + target.name);
+    }
+
+    void SetAttackAnimation(bool setTo)
+    {
+        myAnimator.SetBool(myAnimtorParameters[2].name, setTo);
     }
 }
