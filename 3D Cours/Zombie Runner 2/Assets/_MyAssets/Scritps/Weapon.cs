@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 30f;
     [SerializeField] ParticleSystem muzzleFlashVFX;
+    [SerializeField] GameObject hitVFX;
 
     // Update is called once per frame
     void Update()
@@ -44,10 +45,16 @@ public class Weapon : MonoBehaviour
 
     void ProcessHit(RaycastHit hit)
     {
-        Debug.Log("I hit this thing: " + hit.transform.name);
-        // TODO: add some hit effect for visual players
+        //Debug.Log("I hit this thing: " + hit.transform.name);
+        CreateHitImpact(hit);
         EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
         if (target == null) return;
         target.TakeDamage(damage);
+    }
+
+    void CreateHitImpact(RaycastHit hit)
+    {
+        var tempHitVFX = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));       
+        Destroy(tempHitVFX, 0.1f);
     }
 }
