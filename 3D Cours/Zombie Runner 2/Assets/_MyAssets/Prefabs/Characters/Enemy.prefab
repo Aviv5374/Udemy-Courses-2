@@ -104,9 +104,10 @@ GameObject:
   - component: {fileID: 7975111803956516069}
   - component: {fileID: 7975111803956516066}
   - component: {fileID: 7975111803956516067}
-  - component: {fileID: 1866224250644772597}
-  - component: {fileID: 7975111803956516070}
   - component: {fileID: 2201130884410792764}
+  - component: {fileID: 7975111803956516070}
+  - component: {fileID: 1866224250644772597}
+  - component: {fileID: 5847852596810893459}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -202,7 +203,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 2.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -210,33 +211,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1866224250644772597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7975111803956516064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729380d715e3e4f4a9eec13aa147fab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints: 100
---- !u!114 &7975111803956516070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7975111803956516064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5ff2cac1390a9478d283ca9acedcd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  chaseRange: 5
 --- !u!95 &2201130884410792764
 Animator:
   serializedVersion: 3
@@ -256,3 +230,44 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7975111803956516070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7975111803956516064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5ff2cac1390a9478d283ca9acedcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  chaseRange: 5.75
+--- !u!114 &1866224250644772597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7975111803956516064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729380d715e3e4f4a9eec13aa147fab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 100
+--- !u!114 &5847852596810893459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7975111803956516064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3f2c826285a644ba8b1bcb899e3c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  target: {fileID: 0}

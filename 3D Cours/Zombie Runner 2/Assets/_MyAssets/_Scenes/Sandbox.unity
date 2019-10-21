@@ -2854,10 +2854,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1735720607}
-    - target: {fileID: 7975111803956516070, guid: 31d02b80773e2f44da3ecafddb50440b,
+    - target: {fileID: 5847852596810893459, guid: 31d02b80773e2f44da3ecafddb50440b,
         type: 3}
-      propertyPath: chaseRange
-      value: 5.75
-      objectReference: {fileID: 0}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1735720607}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31d02b80773e2f44da3ecafddb50440b, type: 3}
