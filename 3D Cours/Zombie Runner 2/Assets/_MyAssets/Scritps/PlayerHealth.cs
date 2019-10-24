@@ -11,8 +11,9 @@ public class PlayerHealth : MonoBehaviour
         hitPoints -= damage;
         if (hitPoints <= 0)
         {
-            Debug.Log("You dead, my glip glop");
-            //Destroy(gameObject);
+            //Debug.Log("You dead, my glip glop");
+            SendMessage("OnPlayerDeath");
+            //Destroy(gameObject);????
         }
     }
 }
