@@ -21,4 +21,9 @@ public class EnemyAttack : MonoBehaviour
         //Debug.Log("bang bang");
     }
 
+    void OnDamageTaken()
+    {
+        Debug.Log("OnDamageTaken in EnemyAttack");
+    }
+
 }

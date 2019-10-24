@@ -52,6 +52,11 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
 
+    void OnDamageTaken()
+    {
+        isProvoked = true;
+    }
+
     void EngageTarget()
     {
         FaceTarget();
