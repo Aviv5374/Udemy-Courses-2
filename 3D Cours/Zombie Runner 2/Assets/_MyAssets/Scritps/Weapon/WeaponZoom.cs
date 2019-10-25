@@ -6,10 +6,10 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class WeaponZoom : MonoBehaviour
 {
     [SerializeField] Camera FPCamera;
+    [SerializeField]RigidbodyFirstPersonController fpsController;//i dont realy love this approach
     [SerializeField] float zoom = 2f;
     [SerializeField] float mouseSensitivity = 4f;
 
-    RigidbodyFirstPersonController fpsController;//i dont realy love this approach
 
     #region Rick Version
     [Header("Rick Version")]
@@ -23,8 +23,11 @@ public class WeaponZoom : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        fpsController = GetComponent<RigidbodyFirstPersonController>();
+    {        
+    }
+
+    private void OnEnable()
+    {        
         //Rick Version
         SetZoomValues(false, zoomedOutFOV, zoomOutSensitivity);
     }
@@ -34,7 +37,7 @@ public class WeaponZoom : MonoBehaviour
     {
         ProcessZoom();
     }
-
+    
     void ProcessZoom()
     {
         if (Input.GetMouseButtonDown(1))

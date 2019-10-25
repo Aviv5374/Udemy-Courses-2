@@ -10,6 +10,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlashVFX;
     [SerializeField] GameObject hitVFX;
     [SerializeField] Ammo ammoSlot;
+    [SerializeField] float timeBetweenShots = 0.5f;
+
+    bool canShoot = true;
 
     void Start()
     {
@@ -20,17 +23,21 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && ammoSlot.AmmoAmount > 0)
+        if (Input.GetButtonDown("Fire1") && canShoot && ammoSlot.AmmoAmount > 0)
         {
-            Shoot();
+            StartCoroutine(Shoot());
         }
     }
 
-    void Shoot()
+    IEnumerator Shoot()
     {
+        Debug.Log("StartCoroutine(Shoot());");
+        canShoot = false;
         ammoSlot.ReduceAmmo();
         PlayVFX(muzzleFlashVFX);
         ProcessRaycast();
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true;
     }
 
     void PlayVFX(ParticleSystem vfx)//OR PlayMuzzleFlash(...)
