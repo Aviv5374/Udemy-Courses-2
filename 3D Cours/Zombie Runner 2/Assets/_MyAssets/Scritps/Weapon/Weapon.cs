@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
+        canShoot = true;
         //I think this is better
         //ammoSlot = GetComponent<Ammo>();
     }
@@ -71,5 +72,10 @@ public class Weapon : MonoBehaviour
     {
         var tempHitVFX = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));       
         Destroy(tempHitVFX, 0.1f);
+    }
+
+    void OnPlayerDeath()
+    {
+        canShoot = false;
     }
 }
