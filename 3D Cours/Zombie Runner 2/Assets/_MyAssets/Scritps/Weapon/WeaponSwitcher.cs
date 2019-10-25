@@ -39,7 +39,23 @@ public class WeaponSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SwitchWeapon();        
+        if (Input.GetAxis("Mouse ScrollWheel") != 0 || IsKeyWasPessed())
+        {
+            SwitchWeapon();        
+        }
+    }
+
+    bool IsKeyWasPessed()
+    {
+        for (int index = 0; index < weapons.Length; index++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + index))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void SwitchWeapon()

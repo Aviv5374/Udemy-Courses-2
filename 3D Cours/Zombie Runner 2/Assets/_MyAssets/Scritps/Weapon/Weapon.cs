@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        canShoot = true;
+        //canShoot = true;
         //I think this is better
         //ammoSlot = GetComponent<Ammo>();
     }
@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("Update IN " + name);
         if (Input.GetButtonDown("Fire1") && canShoot && ammoSlot.AmmoAmount > 0)
         {
             StartCoroutine(Shoot());
