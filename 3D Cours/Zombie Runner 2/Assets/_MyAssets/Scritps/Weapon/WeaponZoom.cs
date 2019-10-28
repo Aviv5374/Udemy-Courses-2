@@ -34,7 +34,7 @@ public class WeaponZoom : MonoBehaviour
     private void OnEnable()
     {        
         //Rick Version
-        SetZoomValues(false, zoomedOutFOV, zoomOutSensitivity);
+        SetZoomValuesRickVersion(false, zoomedOutFOV, zoomOutSensitivity);
     }
 
     // Update is called once per frame
@@ -62,7 +62,18 @@ public class WeaponZoom : MonoBehaviour
 
         }
     }
-    
+
+    //TODO: Fine a way to do this
+    /*
+      void SetZoomValues(bool isZoomed, Operator operator)
+      {
+            isZoomed = isZoomed;
+            FPCamera.fieldOfView operator zoom;
+            fpsController.mouseLook.XSensitivity operator mouseSensitivity;
+            fpsController.mouseLook.YSensitivity operator mouseSensitivity;
+      }
+    */
+
     #region Rick Version Methods
 
     //i dont realy love this approach
@@ -73,16 +84,16 @@ public class WeaponZoom : MonoBehaviour
         {
             if (zoomedInToggle == false)
             {
-                SetZoomValues(true, zoomedInFOV, zoomInSensitivity);                
+                SetZoomValuesRickVersion(true, zoomedInFOV, zoomInSensitivity);                
             }
             else
             {
-                SetZoomValues(false, zoomedOutFOV, zoomOutSensitivity);                
+                SetZoomValuesRickVersion(false, zoomedOutFOV, zoomOutSensitivity);                
             }
         }
     }
 
-    void SetZoomValues(bool isZoomed, float fieldOfView, float mouseSensitivity)
+    void SetZoomValuesRickVersion(bool isZoomed, float fieldOfView, float mouseSensitivity)
     {
         zoomedInToggle = isZoomed;
         FPCamera.fieldOfView = fieldOfView;
