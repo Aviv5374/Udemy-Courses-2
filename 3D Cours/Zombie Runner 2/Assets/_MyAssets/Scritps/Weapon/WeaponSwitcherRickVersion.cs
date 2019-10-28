@@ -34,7 +34,7 @@ public class WeaponSwitcherRickVersion : MonoBehaviour
             }
             else
             {
-                currentWeapon++;
+                currentWeapon--;
             }
         }
 
@@ -46,7 +46,7 @@ public class WeaponSwitcherRickVersion : MonoBehaviour
             }
             else
             {
-                currentWeapon--;
+                currentWeapon++;
             }
         }
     }

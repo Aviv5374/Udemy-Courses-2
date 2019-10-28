@@ -22,23 +22,32 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log("Update IN " + name);
-        if (Input.GetButtonDown("Fire1") && canShoot && ammoSlot.AmmoAmount > 0)
-        {
-            StartCoroutine(Shoot());
-        }
-    }
+    //void Update()
+    //{
+    //    //Debug.Log("Update IN " + name);
+    //    if (Input.GetButtonDown("Fire1") && canShoot && ammoSlot.AmmoAmount > 0)
+    //    {
+    //        StartCoroutine(Shoot());
+    //    }
+    //}
 
-    IEnumerator Shoot()
+    //IEnumerator Shoot()
+    //{
+    //    Debug.Log("StartCoroutine(Shoot());");
+    //    canShoot = false;
+    //    ammoSlot.ReduceAmmo();
+    //    PlayVFX(muzzleFlashVFX);
+    //    ProcessRaycast();
+    //    yield return new WaitForSeconds(timeBetweenShots);
+    //    canShoot = true;
+    //}
+
+    private void OnDisable()
     {
-        Debug.Log("StartCoroutine(Shoot());");
-        canShoot = false;
-        ammoSlot.ReduceAmmo();
-        PlayVFX(muzzleFlashVFX);
-        ProcessRaycast();
-        yield return new WaitForSeconds(timeBetweenShots);
+        //Resolves the problem that it's ignore the condition in Update(), because canShoot stay false, and does not fire.
+        //Creates the problem when I switch weapons back it shoots straight a way, ignoring the time left between shots.
+        //TODO: Find a better solution
+        StopAllCoroutines();
         canShoot = true;
     }
 

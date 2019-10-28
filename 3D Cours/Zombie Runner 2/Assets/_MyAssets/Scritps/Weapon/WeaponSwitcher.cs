@@ -69,12 +69,12 @@ public class WeaponSwitcher : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            CurrentWeaponIndex++;
+            CurrentWeaponIndex--;
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            CurrentWeaponIndex--;
+            CurrentWeaponIndex++;
         }
     }
 
