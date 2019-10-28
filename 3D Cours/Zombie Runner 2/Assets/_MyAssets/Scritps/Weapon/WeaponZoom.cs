@@ -14,29 +14,6 @@ public class WeaponZoom : MonoBehaviour
 
     public bool IsZoomed { get { return isZoomed; } }
    
-
-    #region Rick Version
-    [Header("Rick Version")]
-    [SerializeField] float zoomedOutFOV = 60f;
-    [SerializeField] float zoomedInFOV = 20f;
-    [SerializeField] float zoomOutSensitivity = 2f;
-    [SerializeField] float zoomInSensitivity = .5f;
-
-    bool zoomedInToggle = false;
-    #endregion
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    private void OnEnable()
-    {        
-        //Rick Version
-        SetZoomValuesRickVersion(false, zoomedOutFOV, zoomOutSensitivity);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -74,42 +51,5 @@ public class WeaponZoom : MonoBehaviour
       }
     */
 
-    #region Rick Version Methods
-
-    //i dont realy love this approach
-    void ProcessZoomRickVersion()
-    {
-        //the left mouse button toggle the zoom.
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (zoomedInToggle == false)
-            {
-                SetZoomValuesRickVersion(true, zoomedInFOV, zoomInSensitivity);                
-            }
-            else
-            {
-                SetZoomValuesRickVersion(false, zoomedOutFOV, zoomOutSensitivity);                
-            }
-        }
-    }
-
-    void SetZoomValuesRickVersion(bool isZoomed, float fieldOfView, float mouseSensitivity)
-    {
-        zoomedInToggle = isZoomed;
-        FPCamera.fieldOfView = fieldOfView;
-        SetMouseSensitivity(mouseSensitivity);
-    }
-
-    void SetMouseSensitivity(float sensitivity)
-    {
-        fpsController.mouseLook.XSensitivity = sensitivity;
-        fpsController.mouseLook.YSensitivity = sensitivity;
-    }
-
-    //private void OnDisable()
-    //{
-    //    SetZoomValues(false, zoomedOutFOV, zoomOutSensitivity);
-    //}
-
-    #endregion
+    
 }
