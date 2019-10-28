@@ -13,13 +13,27 @@ public class Weapon : MonoBehaviour
     [SerializeField] AmmoType ammoType;
     [SerializeField] float timeBetweenShots = 0.5f;
 
+    WeaponZoom weaponZoom;
     bool canShoot = true;
+
+    public WeaponZoom WeaponZoom
+    {
+        get
+        {
+            if (!weaponZoom)
+            {
+                weaponZoom = GetComponent<WeaponZoom>();
+            }
+
+            return weaponZoom;
+        }
+    }
 
     void Start()
     {
-        //canShoot = true;
+        //canShoot = true;????????
         //I think this is better
-        //ammoSlot = GetComponent<Ammo>();
+        //ammoSlot = GetComponent<Ammo>();       
     }
 
     // Update is called once per frame
@@ -31,9 +45,9 @@ public class Weapon : MonoBehaviour
             StartCoroutine(Shoot());
         }
     }
-
-    void OnDisable()
-    {
+    
+    void OnDisable()//OR OnEnable()
+{
         //Resolves the problem that it's ignore the condition in Update(), because canShoot stay false, and does not fire.
         //Creates the problem when I switch weapons back it shoots straight a way, ignoring the time left between shots.
         //TODO: Find a better solution

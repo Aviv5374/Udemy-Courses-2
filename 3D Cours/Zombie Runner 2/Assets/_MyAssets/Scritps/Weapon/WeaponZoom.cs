@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class WeaponZoom : MonoBehaviour
-{
+{   
     [SerializeField] Camera FPCamera;
-    [SerializeField]RigidbodyFirstPersonController fpsController;//i dont realy love this approach
+    [SerializeField] RigidbodyFirstPersonController fpsController;//i dont realy love this approach
     [SerializeField] float zoom = 2f;
     [SerializeField] float mouseSensitivity = 4f;
 
+    bool isZoomed = false;
+
+    public bool IsZoomed { get { return isZoomed; } }
+   
 
     #region Rick Version
     [Header("Rick Version")]
@@ -23,7 +27,8 @@ public class WeaponZoom : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        
     }
 
     private void OnEnable()
@@ -42,6 +47,7 @@ public class WeaponZoom : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            isZoomed = true;
             FPCamera.fieldOfView /= zoom;
             fpsController.mouseLook.XSensitivity /= mouseSensitivity;
             fpsController.mouseLook.YSensitivity /= mouseSensitivity;
@@ -49,6 +55,7 @@ public class WeaponZoom : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
+            isZoomed = false;
             FPCamera.fieldOfView *= zoom;
             fpsController.mouseLook.XSensitivity *= mouseSensitivity;
             fpsController.mouseLook.YSensitivity *= mouseSensitivity;
@@ -87,6 +94,11 @@ public class WeaponZoom : MonoBehaviour
         fpsController.mouseLook.XSensitivity = sensitivity;
         fpsController.mouseLook.YSensitivity = sensitivity;
     }
+
+    //private void OnDisable()
+    //{
+    //    SetZoomValues(false, zoomedOutFOV, zoomOutSensitivity);
+    //}
 
     #endregion
 }

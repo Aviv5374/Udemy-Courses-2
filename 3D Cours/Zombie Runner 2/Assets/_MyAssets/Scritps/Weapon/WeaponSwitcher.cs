@@ -59,7 +59,8 @@ public class WeaponSwitcher : MonoBehaviour
     }
 
     void SwitchWeapon()
-    {        
+    {
+        if (weapons[currentWeaponIndex].WeaponZoom.IsZoomed) { return; }
         ProcessScrollWheel();
         ProcessKeyInput();
         SetWeaponActive(CurrentWeaponIndex);
