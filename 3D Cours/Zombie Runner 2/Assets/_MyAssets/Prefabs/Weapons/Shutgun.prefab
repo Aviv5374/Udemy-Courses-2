@@ -335,6 +335,7 @@ MonoBehaviour:
   muzzleFlashVFX: {fileID: 4335726266144591521}
   hitVFX: {fileID: 2950565018824483091, guid: 9ff21791b0972c64892a11e1e9414460, type: 3}
   ammoSlot: {fileID: 0}
+  ammoType: 1
   timeBetweenShots: 0.75
 --- !u!114 &3017686606688683207
 MonoBehaviour:
