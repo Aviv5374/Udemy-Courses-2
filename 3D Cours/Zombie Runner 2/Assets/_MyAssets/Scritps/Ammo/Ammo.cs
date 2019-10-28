@@ -15,16 +15,6 @@ public class Ammo : MonoBehaviour
         //public int AmmoAmount { get => ammoAmount; } //set => ammoAmount = value; }
     }
 
-    public int GetCurrentAmmo(AmmoType ammoType)
-    {
-        return GetAmmoSlot(ammoType).ammoAmount;
-    }
-
-    public void ReduceAmmo(AmmoType ammoType, int ammoToReduce = 1)
-    {
-        GetAmmoSlot(ammoType).ammoAmount -= ammoToReduce;
-    }
-
     AmmoSlot GetAmmoSlot(AmmoType ammoType)
     {
         foreach (AmmoSlot slot in ammoSlots)
@@ -37,5 +27,19 @@ public class Ammo : MonoBehaviour
         return null;
     }
 
+    public int GetCurrentAmmo(AmmoType ammoType)
+    {
+        return GetAmmoSlot(ammoType).ammoAmount;
+    }
+
+    public void ReduceAmmo(AmmoType ammoType, int ammoToReduce = 1)
+    {
+        GetAmmoSlot(ammoType).ammoAmount -= ammoToReduce;
+    }
+
+    public void IncreaseAmmo(AmmoType ammoType, int ammoToIncrease)
+    {
+        GetAmmoSlot(ammoType).ammoAmount += ammoToIncrease;
+    }
 
 }
