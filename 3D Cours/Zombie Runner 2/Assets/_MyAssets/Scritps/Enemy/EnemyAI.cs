@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     List<AnimatorControllerParameter> myAnimtorParameters = new List<AnimatorControllerParameter>();     
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
+    bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,24 +23,19 @@ public class EnemyAI : MonoBehaviour
         SetAnimator();
     }
 
-    void SetAnimator()
-    {
-        myAnimator = GetComponent<Animator>();
-        for (int index = 0; index < myAnimator.parameterCount; index++)
-        {
-            myAnimtorParameters.Add(myAnimator.GetParameter(index));
-        }        
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //TODO: fine what more performance effective.
+        if (isDead) { return; /*OR this.enabled = false;*/ }
+
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if (isProvoked)
         {
             EngageTarget();
         }
-        else if (distanceToTarget <= chaseRange)
+        //for next time make it more readable. it cool to use BroadcastMessage, but use it smart.
+        else if (distanceToTarget <= chaseRange)//OR OnDamageTaken
         {
             isProvoked = true;
         }
@@ -52,10 +48,47 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
 
+    #region Animator Methods
+
+    void SetAnimator()
+    {
+        myAnimator = GetComponent<Animator>();
+        for (int index = 0; index < myAnimator.parameterCount; index++)
+        {
+            myAnimtorParameters.Add(myAnimator.GetParameter(index));
+        }        
+    }
+
+    void SetAttackAnimation(bool setTo)
+    {
+        myAnimator.SetBool(myAnimtorParameters[2].name, setTo);
+    }
+
+    void PlayDeathAnimation()
+    {
+        myAnimator.SetTrigger(myAnimtorParameters[3].name);
+    }
+
+    #endregion
+
+    #region Evens
+
     void OnDamageTaken()
     {
         isProvoked = true;
     }
+
+    void OnDeath()
+    {
+        if (isDead) return;
+        isDead = true;
+        PlayDeathAnimation();
+        myNavMeshAgent.enabled = false;
+    }
+
+    #endregion
+
+    #region Engage Target Methods
 
     void EngageTarget()
     {
@@ -72,6 +105,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+    }
+
     void ChaseTarget()
     {
         SetAttackAnimation(false);
@@ -85,15 +125,6 @@ public class EnemyAI : MonoBehaviour
         //Debug.Log(name + " has seeked and is destroying " + target.name);
     }
 
-    void SetAttackAnimation(bool setTo)
-    {
-        myAnimator.SetBool(myAnimtorParameters[2].name, setTo);
-    }
+    #endregion
 
-    void FaceTarget()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-    }
 }

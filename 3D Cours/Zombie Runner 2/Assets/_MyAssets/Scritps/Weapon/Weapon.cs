@@ -57,7 +57,7 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        Debug.Log("StartCoroutine(Shoot());");
+        //Debug.Log("StartCoroutine(Shoot());");
         canShoot = false;
         ammoSlot.ReduceAmmo(ammoType);
         PlayVFX(muzzleFlashVFX);
@@ -89,7 +89,7 @@ public class Weapon : MonoBehaviour
         //Debug.Log("I hit this thing: " + hit.transform.name);
         CreateHitImpact(hit);
         EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-        if (target == null) return;
+        if (target == null || target.HitPoints <= 0) return;
         target.TakeDamage(damage);
     }
 
