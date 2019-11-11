@@ -28,6 +28,9 @@ public class WeaponZoom : MonoBehaviour
             FPCamera.fieldOfView /= zoom;
             fpsController.mouseLook.XSensitivity /= mouseSensitivity;
             fpsController.mouseLook.YSensitivity /= mouseSensitivity;
+
+            //TODO: Fine a way to replace the code above with this method
+            //SetZoomValues(bool isZoomed, Operator operator);
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -37,6 +40,8 @@ public class WeaponZoom : MonoBehaviour
             fpsController.mouseLook.XSensitivity *= mouseSensitivity;
             fpsController.mouseLook.YSensitivity *= mouseSensitivity;
 
+            //TODO: Fine a way to replace the code above with this method
+            //SetZoomValues(bool isZoomed, Operator operator);
         }
     }
 
