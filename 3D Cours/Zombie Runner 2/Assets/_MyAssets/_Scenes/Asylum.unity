@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.0979859, g: 0.14555064, b: 0.23257735, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -96,7 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 112000000, guid: fd373111c2f0bfa4fbd578e7510177c5,
+  m_LightingDataAsset: {fileID: 112000000, guid: e727d28f190e3e149a615494a52f00b7,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -233,7 +233,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
+  m_BoundingSphereOverride: {x: -1.114e-42, y: 6e-45, z: 2.4e-44, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1420,7 +1420,7 @@ PrefabInstance:
     - target: {fileID: 554390552560220839, guid: 417cdd064611baa4ea39c57305079399,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 554390552560220839, guid: 417cdd064611baa4ea39c57305079399,
         type: 3}
