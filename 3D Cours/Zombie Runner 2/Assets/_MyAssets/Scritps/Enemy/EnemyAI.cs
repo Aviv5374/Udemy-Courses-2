@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
     [SerializeField] float chaseRange = 8.75f;
     [SerializeField] float turnSpeed = 5f;
 
+    Transform target;
     NavMeshAgent myNavMeshAgent;
     Animator myAnimator;
     List<AnimatorControllerParameter> myAnimtorParameters = new List<AnimatorControllerParameter>();     
@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = FindObjectOfType<PlayerHealth>().transform;
         myNavMeshAgent = GetComponent<NavMeshAgent>();
         SetAnimator();
     }
