@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -12,6 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Ammo ammoSlot;
     [SerializeField] AmmoType ammoType;
     [SerializeField] float timeBetweenShots = 0.5f;
+    [SerializeField] TextMeshProUGUI ammoText;
 
     WeaponZoom weaponZoom;
     bool canShoot = true;
@@ -39,20 +41,27 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DisplayAmmo();
+
         //Debug.Log("Update IN " + name);
         if (Input.GetButtonDown("Fire1") && canShoot && ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             StartCoroutine(Shoot());
         }
     }
-    
+
     void OnDisable()//OR OnEnable()
-{
+    {
         //Resolves the problem that it's ignore the condition in Update(), because canShoot stay false, and does not fire.
         //Creates the problem when I switch weapons back it shoots straight a way, ignoring the time left between shots.
         //TODO: Find a better solution
         StopAllCoroutines();
         canShoot = true;
+    }
+
+    void DisplayAmmo()
+    {
+        ammoText.text = ammoSlot.GetCurrentAmmo(ammoType).ToString();
     }
 
     IEnumerator Shoot()
