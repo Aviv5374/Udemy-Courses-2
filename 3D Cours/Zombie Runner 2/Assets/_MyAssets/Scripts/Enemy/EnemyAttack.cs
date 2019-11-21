@@ -7,18 +7,25 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float damage = 40f;
 
     PlayerHealth target;
+    DisplayDamage damageTarget;
 
     // Start is called before the first frame update
     void Start()
     {
         target = FindObjectOfType<PlayerHealth>();
+        damageTarget = FindObjectOfType<DisplayDamage>();
     }
 
     public void AttackHitEvent()
     {
-        if (target == null) return;
+        if (!target || !damageTarget)
+        {
+            Debug.LogWarning("Didn't Find Player's Scripts!!!!!");
+            return;
+        }
+
         target.TakeDamage(damage);
-        //Debug.Log("bang bang");
+        damageTarget.ShowDamageImpact();
     }
 
     void OnDamageTaken()
